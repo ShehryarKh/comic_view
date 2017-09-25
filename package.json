@@ -1,0 +1,29 @@
+{
+  "name": "comic",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-browser": "^2.1.9",
+    "gulp-size": "^2.1.0",
+    "reactify": "^1.1.1"
+  },
+  "dependencies": {
+    "@types/node": "^8.0.30"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShehryarKh/comic_view.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ShehryarKh/comic_view/issues"
+  },
+  "homepage": "https://github.com/ShehryarKh/comic_view#readme"
+}
