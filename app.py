@@ -1,15 +1,13 @@
+
+
 from flask import Flask
 app = Flask(__name__)
 
 
-
-
 @app.route("/")
 def main():
-    return "Comic View Coming Soon"
+    return "Welcome!"
 
 
-
-
-if __name__ == "__name__":
-		app.run()
+if __name__ == "__main__":
+    app.run()
