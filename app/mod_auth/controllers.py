@@ -20,7 +20,7 @@ mod_auth = Blueprint('auth', __name__)
 # Set the route and accepted methods
 
 
-@mod_auth.route('/', methods=['GET', 'POST'])
+@mod_auth.route('/signin', methods=['GET', 'POST'])
 def signin():
 
     # If sign in form is submitted
@@ -42,3 +42,8 @@ def signin():
         flash('Wrong email or password', 'error-message')
 
     return render_template("auth/signin.html", form=form)
+
+
+@mod_auth.route('/', methods=['GET'])
+def index():
+    return render_template("base_files/index.html")
