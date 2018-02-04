@@ -79,7 +79,7 @@ def create_identity(username, password):
     Raises:
         AlreadyExists - The username is already assigned to an identity.
     """
-    from zapi_service.models import role
+    from app.controllers.models import role
     from zapi_service.controllers.request import create_jwt
 
     bcrypt = Bcrypt(app)

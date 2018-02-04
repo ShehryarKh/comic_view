@@ -7,10 +7,11 @@ from werkzeug import check_password_hash, generate_password_hash
 
 # Import the database object from the main app module
 from database import db
+from settings.request import json_body
 
 
 # Import module models (i.e. User)
-from app.mod_auth.user_model import User
+import app.mod_auth.models.user_model as User
 
 # Define the blueprint: 'auth', set its url prefix: app.url/auth
 mod_auth = Blueprint('auth', __name__)
@@ -20,7 +21,8 @@ mod_auth = Blueprint('auth', __name__)
 
 
 @mod_auth.route('/signup', methods=['POST'])
-def signup():
+@json_body(User.schema())
+def signup(json):
     """
     POST /auth/identities - Create an identity.
     """

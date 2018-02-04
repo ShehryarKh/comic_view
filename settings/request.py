@@ -2,7 +2,7 @@
 requests module.
 """
 
-from zapi_service import app
+import app
 
 from flask import request
 from werkzeug.exceptions import BadRequest, Unauthorized
@@ -68,6 +68,7 @@ def _validate(dict, schema):
         raise BadRequest(e.message)
     except Exception as e:  # Perhaps some other exception is thrown?
         raise BadRequest(str(e))
+
 
 def json_body(schema):
     def json_body_decorator(f):
