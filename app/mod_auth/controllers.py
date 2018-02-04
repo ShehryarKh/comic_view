@@ -1,49 +1,40 @@
 # Import flask dependencies
 from flask import Blueprint, request, render_template, \
-    flash, g, session, redirect, url_for
+    flash, g, session, redirect, url_for, jsonify
 
 # Import password / encryption helper tools
 from werkzeug import check_password_hash, generate_password_hash
 
 # Import the database object from the main app module
-from app import db
+from database import db
 
-# Import module forms
-from app.mod_auth.forms import LoginForm
 
 # Import module models (i.e. User)
-from app.mod_auth.models import User
+from app.mod_auth.user_model import User
 
 # Define the blueprint: 'auth', set its url prefix: app.url/auth
 mod_auth = Blueprint('auth', __name__)
 
+
 # Set the route and accepted methods
 
 
-@mod_auth.route('/signin', methods=['GET', 'POST'])
-def signin():
+@mod_auth.route('/signup', methods=['POST'])
+def signup():
+    """
+    POST /auth/identities - Create an identity.
+    """
+    username = json['username']
+    password = json['password']
 
-    # If sign in form is submitted
-    form = LoginForm(request.form)
+    identity = User.create_identity(username, password)
+    roles = Role.fetch_for_identity(identity.identity_id)
 
-    # Verify the sign in form
-    if form.validate_on_submit():
-
-        user = User.query.filter_by(email=form.email.data).first()
-
-        if user and check_password_hash(user.password, form.password.data):
-
-            session['user_id'] = user.id
-
-            flash('Welcome %s' % user.name)
-
-            return redirect(url_for('auth.home'))
-
-        flash('Wrong email or password', 'error-message')
-
-    return render_template("auth/signin.html", form=form)
+    return json_response(status=201,
+                         data=roles,
+                         headers={'X-Session': identity.session_id})
 
 
 @mod_auth.route('/', methods=['GET'])
 def index():
-    return render_template("base_files/index.html")
+    return jsonify({'message': 'Hello, World!'})

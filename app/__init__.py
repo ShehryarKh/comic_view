@@ -1,13 +1,10 @@
 # Import flask and template operators
 from flask import Flask, render_template
-from flask_bootstrap import Bootstrap
 
 # Import SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
 # Define the WSGI application object
 app = Flask(__name__)
-Bootstrap(app)
-
 
 # Configurations
 app.config.from_object('config')
